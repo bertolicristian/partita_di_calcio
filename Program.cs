@@ -37,6 +37,31 @@
             }
         }
 
+        static int ammTitolari(int[] titSquad1)
+        {
+            Random rnd = new Random();          
+
+            int ammonizioni = rnd.Next(100);
+
+            if (ammonizioni <= 4)
+            {
+                Console.WriteLine("");
+
+                int giocatore = rnd.Next(titSquad1.Length);
+
+
+
+                
+            }
+
+            else
+            {
+                return false;
+            }
+               
+            
+        }
+
         static void Main(string[] args)
         {
             int goal1 = 0;
