@@ -2,6 +2,7 @@
 {
     internal class Program
     {
+        //funzione che stabilisce la forza ai giocatori
         static void forzaGiocatori(int[] stats)
         {
             Random rnd = new Random();
@@ -17,6 +18,7 @@
 
         }
 
+        //somma la forza dei membri della squadra
         static int forzaSquadra(int[] stats)
         {
             int somma = 0;
@@ -37,29 +39,52 @@
             }
         }
 
-        static int ammTitolari(int[] titSquad1)
+        static bool ammTitolari1(int[] titSquad1)
         {
-            Random rnd = new Random();          
+            Random rnd = new Random();
 
             int ammonizioni = rnd.Next(100);
 
             if (ammonizioni <= 4)
             {
-                Console.WriteLine("");
+                titSquad1[ammonizioni] -= 10;
 
-                int giocatore = rnd.Next(titSquad1.Length);
+                Console.WriteLine();
+                Console.WriteLine("CARTELLINO GIALLO GIOCATORE " + ammonizioni + " SQUADRA 1");
 
-
-
-                
+                return true;
             }
 
-            else
+            return false;
+        }   
+
+        static bool ammTitolari2(int[] titSquad2)
+        {
+            Random rnd = new Random();
+
+            int ammonizioni = rnd.Next(100);
+
+            if (ammonizioni <= 4)
             {
-                return false;
+                titSquad2[ammonizioni] -= 10;
+
+                Console.WriteLine();
+                Console.WriteLine("CARTELLINO GIALLO GIOCATORE " + ammonizioni + " SQUADRA 2");
+
+                return true;
             }
-               
-            
+
+            return false;
+        }
+
+        static void sostituzioni(int[] titsquad)
+        {
+            Random rnd = new Random();
+
+            for (int i = 0; i < titsquad.Length; i++)
+            {
+
+            }
         }
 
         static void Main(string[] args)
@@ -75,6 +100,9 @@
 
             int[] titolari2 = new int[11];
             int[] panchinari2 = new int[5];
+
+            int[] amm1 = new int[11];
+            int[] amm2 = new int[11];
 
             forzaGiocatori(titolari1);
             forzaGiocatori(panchinari1);
@@ -136,6 +164,40 @@
                         Console.WriteLine("HA SEGNATO LA SQUADRA 1");
 
                         goal1++;
+                    }
+                }
+
+                if (ammTitolari1(titolari1) == true)
+                {
+                    Console.WriteLine();
+                    stampaSquadra(titolari1);
+                    Console.WriteLine();
+                    forzaSquadra1 = forzaSquadra(titolari1);
+                    Console.WriteLine("forza della squadra 1: " + forzaSquadra1);
+                    Console.WriteLine();
+                    amm1[i]++;
+                    if (amm1[i] >= 2)
+                    {
+                        Console.WriteLine("CARTELLINO ROSSO PER GIOCATORE " + i + " SQUADRA 1");
+
+                        titolari1[i] = 0;
+                    }
+                }
+
+                if (ammTitolari2(titolari2) == true)
+                {
+                    Console.WriteLine();
+                    stampaSquadra(titolari2);
+                    Console.WriteLine();
+                    forzaSquadra2 = forzaSquadra(titolari2);
+                    Console.WriteLine("forza della squadra 1: " + forzaSquadra2);
+                    Console.WriteLine();
+                    amm2[i]++;
+                    if (amm2[i] >= 2)
+                    {
+                        Console.WriteLine("CARTELLINO ROSSO PER GIOCATORE " + i + "SQUADRA 2");
+
+                        titolari2[i] = 0;
                     }
                 }
 
